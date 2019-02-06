@@ -1,21 +1,41 @@
+html{
+    scroll-behavior: smooth;
+}
+
+
 body{
     margin: 0;
 }
 
 #title{
     margin:0;
+    padding: 0;
     border-bottom:3px solid black;
-    padding: 42vh 0;
+    height: 100vh;
     background-color: hotpink;
     animation-name: heartbeat;
     animation-duration: 6s;
     animation-iteration-count: infinite;
 }
 
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center; 
+}
+
+a{
+    color:inherit;
+    text-decoration: none;
+}
+
 #start{
-    padding: 30vh 4vw;    
     border-bottom:3px solid black;
+    padding: 0 50px;
     background-color: aqua;
+    height: 100vh;
+
 }
 
 h1{
