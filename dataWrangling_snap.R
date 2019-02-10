@@ -22,7 +22,7 @@ colnames(received_messages_all) <- c("date", "is_from_me")
 
 num_messages_received <- nrow(received_messages_all)
 
-sent_messages <- all_messages$`Sent Chat History`
+sent_messages <- all_messages1$`Sent Chat History`
 sent_messages <- sent_messages %>% filter(grepl("betsyymirandaa", tolower(sent_messages$To)))
 
 sent_messages2 <- all_messages2$`Sent Chat History`
