@@ -109,6 +109,11 @@ li em{
     font-size: 2.5vh;
 }
 
+em.emoji{
+    font-size: 2vh;
+    font-style: normal;
+}
+
 img{
     width: 100%;
     height: auto;
@@ -157,11 +162,4 @@ img{
     60% {background-color: hotpink;}
     70% {background-color: deeppink;}
     100% {background-color: hotpink;}
-}
-
-
-@media (min-width:1200px){
-    .list{
-
-    }
 }
