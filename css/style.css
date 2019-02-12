@@ -47,6 +47,7 @@ a{
     justify-content: flex-start;
 }
 
+
 .images{
     display: flex;
     flex-direction: row;
@@ -64,6 +65,11 @@ a{
 #longest_texts .betsy img{
     height: 50vh;
     width: auto;
+}
+
+#timeline-snap .both, #timeline-snap .harim, #timeline-snap .betsy{
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 h1, h2{
@@ -169,5 +175,13 @@ img{
     #longest_texts .betsy img{
         height: auto;
         width: 70vw;
+    }
+
+}
+
+@media(max-width: 800px){
+    
+    #timeline-snap .both, #timeline-snap .harim, #timeline-snap .betsy{
+        flex-wrap: wrap;
     }
 }
