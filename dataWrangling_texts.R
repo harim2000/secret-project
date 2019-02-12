@@ -160,6 +160,9 @@ texts_by_day_harim <- texts_by_day_harim %>%
   complete(Date = seq.Date(min(Date), max(Date), by='day'))
 texts_by_day_harim$`Number of Texts` <- replace_na(texts_by_day_harim$`Number of Texts`, 0)
 
+temp <- data.frame(as.Date('2019-02-12'), 0)
+colnames(temp) <- colnames(texts_by_day_harim)
+texts_by_day_harim <- rbind(texts_by_day_harim, temp)
 #get the number of texts sent on a day for Betsy--------------------------------
 texts_by_day_betsy <- betsy_texts
 texts_by_day_betsy$date <- as.Date(as.character(betsy_texts$date))
@@ -232,7 +235,8 @@ both_word_freq <- as.data.frame(get_word_frequency(texts_emoji))
 heart_texts <- both_texts %>% filter(grepl("heart|corazon", tolower(both_texts$text)))
 heart_texts$date <- as.Date(as.character((heart_texts$date)))
 heart_texts$count <- str_count(tolower(heart_texts$text), "heart|corazon")
-heart_texts_time <- heart_texts %>% group_by(date) %>% summarise(sum(count))
+
+heart_texts_time <- heart_texts %>% dplyr::group_by(date) %>% dplyr::summarise(sum(count))
 heart_texts_time <- heart_texts_time %>% 
                       mutate(date = as.Date(date)) %>% 
                         complete(date = seq.Date(min(date), max(date), by='day'))
@@ -240,10 +244,10 @@ heart_texts_time$`sum(count)` <- replace_na(heart_texts_time$`sum(count)`, 0)
 heart_texts_time <- select(heart_texts_time, date, 'sum(count)')
 colnames(heart_texts_time) <- c("Date", "Number of Hearts")
 #I love you over time-----------------------------------------------------------
-ily_texts <- both_texts %>% filter(grepl("i love you ", tolower(both_texts$text)))
+ily_texts <- both_texts %>% filter(grepl("love you ", tolower(both_texts$text)))
 ily_texts$date <- as.Date(as.character((ily_texts$date)))
-ily_texts$count <- str_count(tolower(ily_texts$text), "i love you")
-ily_texts_time <- ily_texts %>%  group_by(date) %>% summarise(sum(count))
+ily_texts$count <- str_count(tolower(ily_texts$text), "love you ")
+ily_texts_time <- ily_texts %>%  dplyr::group_by(date) %>% dplyr::summarise(sum(count))
 ily_texts_time <- ily_texts_time %>% 
                       mutate(date = as.Date(date)) %>% 
                         complete(date = seq.Date(min(date), max(date), by='day'))
@@ -326,7 +330,11 @@ both_texts_over_time_p <- plot_ly(data = texts_by_day_harim,
                                          plot_bgcolor = 'transparent',
                                          barmode = "stack",
                                          bargap = 0.5, 
-                                         legend = list(x = 0, y = 1, bgcolor = 'rgba(255, 255, 255, 0)', bordercolor = 'rgba(255, 255, 255, 0)')) 
+                                         legend = list(x = 0, y = 1, bgcolor = 'rgba(255, 255, 255, 0)', bordercolor = 'rgba(255, 255, 255, 0)'),
+                                         xaxis = list(title = "Date"),
+                                         yaxis = list(title = "Number of Texts"),
+                                         title = "Texts We've Sent")
+
 export(both_texts_over_time_p, "images/both_texts.png")
 
 harim_texts_over_time_p <- plot_ly(data = texts_by_day_harim,
@@ -334,8 +342,12 @@ harim_texts_over_time_p <- plot_ly(data = texts_by_day_harim,
                                    y = texts_by_day_harim$"Number of Texts",
                                    type = "bar",
                                    name = "Number of Texts Over Time (Harim)")%>% 
-                                   layout(paper_bgcolor = 'transparent',
-                                          plot_bgcolor = 'transparent')
+                           layout(paper_bgcolor = 'transparent',
+                                  plot_bgcolor = 'transparent',
+                                  xaxis = list(title = "Date"),
+                                  yaxis = list(title = "Number of Texts"),
+                                  title = "Texts I've Sent")
+
 export(harim_texts_over_time_p, "images/harim_texts.png")
 
 
@@ -345,28 +357,34 @@ betsy_texts_over_time_p <- plot_ly(data = texts_by_day_betsy,
                                    type = "bar",
                                    name = "Number of Texts Over Time (Betsy)",
                                    marker = list(color = 'pink')) %>% 
-                                   layout(paper_bgcolor = 'transparent',
-                                          plot_bgcolor = 'transparent')
+                           layout(paper_bgcolor = 'transparent',
+                                  plot_bgcolor = 'transparent',
+                                  xaxis = list(title = "Date"),
+                                  yaxis = list(title = "Number of Texts"),
+                                  title = "Texts You've Sent")
+
 export(betsy_texts_over_time_p, "images/betsy_texts.png")
 #heart graphs===================================================================
 heart_texts_time_p <- plot_ly(data = heart_texts_time,
                               x = heart_texts_time$Date,
                               y = heart_texts_time$"Number of Hearts",
                               type = 'bar') %>% 
-                      layout(title = 'Number of hearts (and heart emojis) in texts',
+                      layout(title = 'Number of Hearts (and Heart Emojis) in Texts',
                              xaxis = list(title = "Date",
                                                  showticklabels = TRUE),
-                                    yaxis = list(title = "Messages with a heart"))
+                             yaxis = list(title = "Number of Messages With a Heart"))
+
 export(heart_texts_time_p, "images/heart_texts.png")
 
 ily_texts_time_p <- plot_ly(data = ily_texts_time,
                               x = as.Date(ily_texts_time$Date),
                               y = ily_texts_time$"Number of ILY's",
                               type = 'bar') %>% 
-                    layout(title = "Number of I Love You's in texts", 
+                    layout(title = "Number of I Love You's in Texts", 
                            xaxis = list(tickformat = '%d %B', 
                                         title = "Date"),
-                           yaxis = list(title = 'Messages with an "I love you"'))
+                           yaxis = list(title = 'Number of Messages with an "I love you"'))
+
 export(ily_texts_time_p, "images/ily_texts.png")
 
 #emoji graphs===================================================================
@@ -377,11 +395,12 @@ top_emoji_p <- plot_ly(x = seq(1, 10, 1),
                        textposition = "auto",
                        marker = list(color = 'rgb(158,202,225)',
                                      line = list(color = 'rgb(8,48,107)', width = 1.5))) %>% 
-                                     layout(xaxis = list(title = "Emoji Rank",
-                                                         showticklabels = TRUE),
-                                            yaxis = list(title = "Times Used"),
-                                            name = "Top Emojis - Both")
-export(top_emoji_p, "images/top_emoji.png")
+                       layout(xaxis = list(title = "Emoji Rank",
+                                           showticklabels = TRUE),
+                              yaxis = list(title = "Times Used"),
+                              title = "Top Emojis - Both")
+
+#export(top_emoji_p, "images/top_emoji.png")
 
 
 top_harim_emoji_p <- plot_ly(x = seq(1, 10),
@@ -391,11 +410,12 @@ top_harim_emoji_p <- plot_ly(x = seq(1, 10),
                              textposition = "auto",
                              marker = list(color = 'rgb(158,202,225)',
                                       line = list(color = 'rgb(8,48,107)', width = 1.5))) %>% 
-                                      layout(xaxis = list(title = "Emoji Rank",
-                                                          showticklabels = TRUE),
-                                             yaxis = list(title = "Times Used"),
-                                             title = "Top Emojis - Harim")
-export(top_harim_emoji_p, "images/top_emoji_harim.png")
+                            layout(xaxis = list(title = "Emoji Rank",
+                                                showticklabels = TRUE),
+                                   yaxis = list(title = "Times Used"),
+                                   title = "Top Emojis - Harim")
+
+#export(top_harim_emoji_p, "images/top_emoji_harim.png")
 
 top_betsy_emoji_p <- plot_ly(x = seq(1, 10),
                              y = top_betsy_emoji$times_sent,
@@ -404,20 +424,24 @@ top_betsy_emoji_p <- plot_ly(x = seq(1, 10),
                              textposition = "auto",
                              marker = list(color = 'rgb(158,202,225)',
                                            line = list(color = 'rgb(8,48,107)', width = 1.5))) %>% 
-                                           layout(xaxis = list(title = "Emoji Rank",
-                                                               showticklabels = TRUE),
-                                                  yaxis = list(title = "Times Used"),
-                                                  title = "Top Emojis - Betsy")
-export(top_betsy_emoji_p, "images/top_emoji_betsy.png")
+                             layout(xaxis = list(title = "Emoji Rank",
+                                                 showticklabels = TRUE),
+                                    yaxis = list(title = "Times Used"),
+                                    title = "Top Emojis - Betsy")
+
+#export(top_betsy_emoji_p, "images/top_emoji_betsy.png")
 
 #hehe haha graphs===============================================================
 percentage_hehe_p <- plot_ly(hehe_data, labels = rownames(hehe_data), 
-                             values = hehe_data[,1], type = "pie")
+                             values = hehe_data[,1], type = "pie") %>% 
+                     layout(title = "Percentage of 'hehe's' in Texts")
+
 export(percentage_hehe_p, "images/percentage_hehe.png")
 
 
 percentage_haha_lol_p <- plot_ly(haha_lol_data, labels = rownames(haha_lol_data), 
-                                 values = haha_lol_data[,1], type = "pie")
+                                 values = haha_lol_data[,1], type = "pie") %>% 
+                         layout(title = "Percentage of 'haha's', 'lol's', and 'lmao's' in Texts")
 export(percentage_haha_lol_p, "images/percentage_haha.png")
 
 #text heat map------------------------------------------------------------------
@@ -435,8 +459,8 @@ text_heatmap_p <- plot_ly(z = sent_by_day_by_hour_temp,
                           x = colnames(sent_by_day_by_hour_temp),
                           y = time,
                           colorscale = colz,
-                          type = "heatmap",
-                          title = "Heatmap of texts")
+                          type = "heatmap") %>% 
+                  layout(title = "Heatmap of Texts (Time vs Day)")
 
 export(text_heatmap_p, "images/text_heatmap.png")
 
@@ -445,13 +469,21 @@ export(text_heatmap_p, "images/text_heatmap.png")
 sent_by_day_p <- plot_ly(data = sent_by_day,
                          x = sent_by_day$Day,
                          y = sent_by_day$N,
-                         type = "bar")
+                         type = "bar") %>% 
+                 layout(xaxis = list(title = "Day"),
+                        yaxis = list(title = "Number of Texts"),
+                        title = "Texts Sent by Day")
+
 export(sent_by_day_p, "images/sent_by_day.png")
 
 sent_by_hour_p <- plot_ly(data = sent_by_hour,
                           x = sent_by_hour$Hour,
                           y = sent_by_hour$N,
-                          type = "bar")
+                          type = "bar") %>% 
+                  layout(xaxis = list(title = "Hour"),
+                         yaxis = list(title = "Number of Texts"),
+                         title = "Texts Sent by Hour")
+
 export(sent_by_hour_p, "images/sent_by_hour.png")
 
 end_time <- Sys.time()
