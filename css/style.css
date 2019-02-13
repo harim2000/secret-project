@@ -13,15 +13,13 @@ body{
     border-bottom:3px solid black;
     height: 100vh;
     background-color: hotpink;
-    animation-name: heartbeat;
-    animation-duration: 6s;
-    animation-iteration-count: infinite;
+    
 }
 
 .container{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center; 
     border-bottom: 3px solid black;
 }
@@ -52,7 +50,7 @@ a{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
 
 }
 
@@ -70,6 +68,17 @@ a{
 #timeline-snap .both, #timeline-snap .harim, #timeline-snap .betsy{
     display: flex;
     flex-wrap: nowrap;
+}
+
+#word_analysis div img{
+    height: 60vh;
+    width: auto;
+}
+
+#word_analysis div{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 h1, h2{
@@ -132,7 +141,7 @@ img{
 }
 
 .fas:hover{
-    font-size: 3.5em;  
+    font-size: 4em;  
 }
 
 .title-heart{
@@ -145,9 +154,6 @@ img{
 
 .heart{
     margin-top: 35.040px;
-    animation-name: heartbeat2;
-    animation-duration: 6s;
-    animation-iteration-count: infinite;
 }
 
 @keyframes heartbeat2{
@@ -183,5 +189,20 @@ img{
     
     #timeline-snap .both, #timeline-snap .harim, #timeline-snap .betsy{
         flex-wrap: wrap;
+    }
+
+}
+
+@media(max-width: 500px){
+    #title{
+        animation-name: heartbeat;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+    }
+    
+    .heart{
+        animation-name: heartbeat2;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
     }
 }
