@@ -2,6 +2,14 @@ html{
     scroll-behavior: smooth;
 }
 
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}
 
 body{
     margin: 0;
@@ -73,6 +81,8 @@ a{
 #word_analysis div img{
     height: 60vh;
     width: auto;
+    align-self: center;
+
 }
 
 #word_analysis div{
@@ -155,6 +165,9 @@ img{
 .heart{
     margin-top: 35.040px;
 }
+div .heart{
+    font-size: 6vh;
+}
 
 @keyframes heartbeat2{
     0%   {font-size: 6vh;}
@@ -178,7 +191,7 @@ img{
 
 @media (max-width: 700px){
     
-    #longest_texts .betsy img{
+    #longest_texts .betsy img, #word_analysis div img{
         height: auto;
         width: 70vw;
     }
@@ -193,7 +206,7 @@ img{
 
 }
 
-@media(max-width: 500px){
+@media(min-width: 500px){
     #title{
         animation-name: heartbeat;
         animation-duration: 5s;
