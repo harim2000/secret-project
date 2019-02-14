@@ -91,6 +91,43 @@ a{
     flex-wrap: wrap;
 }
 
+#final_message{
+    background-color: #AFEEEE;	
+}
+
+#final_message div{
+    width: 80vw;
+}
+
+#final_message div p{
+    text-align: start;
+    line-height: 1.8;
+}
+
+.lyrics{
+    font-size: 1.75vh;
+}
+
+.songs{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+audio{
+    width: 50%;
+    align-self: center;
+}
+
+.song{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#final_message .centered p{
+    text-align: center;
+}
+
 h1, h2{
     font-family: 'Cedarville Cursive', cursive;
     font-size: 7vh;
@@ -131,6 +168,10 @@ p{
 }
 
 li em{
+    font-size: 2.5vh;
+}
+
+em{
     font-size: 2.5vh;
 }
 
@@ -194,6 +235,11 @@ div .heart{
     #longest_texts .betsy img, #word_analysis div img{
         height: auto;
         width: 70vw;
+    }
+
+    #word_analysis div img{
+        height: auto;
+        width: 85vw;
     }
 
 }

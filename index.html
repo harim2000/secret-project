@@ -149,42 +149,53 @@
         </div>
     </div>
     <div id="timeline-snap" class="container">
-            <h2>Timeline of Messages</h2>
-            <p>(Snapchat)</p>
-            <div class="both">
-                <div>
-                    <h3>Both Messages</h3>
-                    <img src="images/all_m_snap.png">
-                </div>
-                <div>
-                    <h3>Both Snaps</h3>
-                    <img src="images/all_s_snap.png">
-                </div>
-            </div>
-            <div class="harim">
-                <div>
-                    <h3>Me (Harim) Messages</h3>
-                    <img src="images/sent_m_snap.png">
-                </div>
-                <div>
-                    <h3>Me (Harim) Snaps</h3>
-                    <img src="images/sent_s_snap.png">
-                </div>
-            </div>
-            <div class="betsy">
-                <div> 
-                    <h3>You (Betsy) Messages</h3>
-                    <img src="images/received_m_snap.png">
-                </div>
-                <div>
-                    <h3>You (Betsy) Snaps</h3>
-                    <img src="images/received_s_snap.png">
-                </div>
+        <h2>Timeline of Messages</h2>
+        <p>(Snapchat)</p>
+        <div class="both">
+            <div>
+                <h3>Both Messages</h3>
+                <img src="images/all_m_snap.png">
             </div>
             <div>
-                <a href="#word_analysis"><i class="fas fa-chevron-down fa-3x"></i></a>    
+                <h3>Both Snaps</h3>
+                <img src="images/all_s_snap.png">
             </div>
         </div>
+        <div class="harim">
+            <div>
+                <h3>Me (Harim) Messages</h3>
+                <img src="images/sent_m_snap.png">
+            </div>
+            <div>
+                <h3>Me (Harim) Snaps</h3>
+                <img src="images/sent_s_snap.png">
+            </div>
+        </div>
+        <div class="betsy">
+            <div> 
+                <h3>You (Betsy) Messages</h3>
+                <img src="images/received_m_snap.png">
+            </div>
+            <div>
+                <h3>You (Betsy) Snaps</h3>
+                <img src="images/received_s_snap.png">
+            </div>
+        </div>
+        <div>
+            <a href="#word_analysis"><i class="fas fa-chevron-down fa-3x"></i></a>    
+        </div>
+    </div>
+    <div id="timeline-imessage" class="container">
+        <h2>Timeline of All Messages</h2>
+        <p>(iMessage and Snapchat)</p>
+        <p>Since Date Specified Above</p>
+        <div class="both">
+            <img src="images/all_messages.png">
+        </div>
+        <div>
+            <a href="#timeline-snap"><i class="fas fa-chevron-down fa-3x"></i></a>    
+        </div>
+    </div>
     <div id="word_analysis" class="container">
         <h2>Word analysis</h2>
         <p><i>This data is only from iMessage since Snapchat doesn't give full text data, only when the messages were sent and to who</i></p>
@@ -192,6 +203,7 @@
             <h3>Hearts in Texts</h3>
             <p>Hearts sent in texts as either emojis or as the word heart/corazon</p>
             <img src="images/heart_texts.png">
+            <p>*Peak at 1/13/19</p>
         </div>
         <div class="ily">
             <h3>I love you's in Texts</h3>
@@ -234,8 +246,106 @@
         </div>
     </div>
     <div id="final_message" class="container">
-        
+        <h2>Conclusion</h2>
+        <div>
+            <p>&emsp;&emsp;So this is the information and graphs that I was able to get from the iMessage and Snapchat data. Snapchat didnt provide as much data as iMessage did. 
+                When I first requested the information, they sent me a couple of files containing all the times I had sent or received a message or a snap in the last month, 
+                but not the message or snap itself. I had hoped to ge more from them, at least numbers from when we first started talking but thats all they were able to provide. 
+                iMessage data was easier to get to, I just had to backup my phone to my laptop, find the file containing the messages, and convert it to a JSON file which could be read by the program I used. 
+                I used the R programming language to process all the data, putting in the JSON and CSV files and running some scripts to process them, looking for various things that came to mind, 
+                like how many times a certain word had been used (for iMessage), how many messages were sent on a certain date, and (on iMessage) what we talked about that day. 
+                I then started thinking about how to compile all the information I gathered. I was first thinking about just putting it all in a Publisher document and sending that to you 
+                as a PDF but that didn't feel right. So I opted to build you a website instead. This whole idea came to me around Christmas time but I decided to put it off till now so that I could 
+                prepare for it and research how to process the data and everything. Its a simple website right now, only using HTML (for content) and CSS (for styling), but Im thinking about updating it every 
+                once in a while, maybe once a month so that I dont lose any data from Snapchat. I started researching everything in mid-January and now it is presentable.</p><br>
+            
+            <p>&emsp;&emsp;Its almost been a year since we have started talking and as I was going thorugh all this data I kept on remembering things that we have done together, like the Fourth of July, which was the 
+                first day we spent the whole time together, first going down to Tacoma, to the zoo, to Moctezuma past the toll bridge, to the glass museum, then the ride back home (during which you took a 
+                nap, I kept on looking over at you and how cute you looked) and then over to Bellevue for the fireworks show. The whole time Ive been working on this I kept thinking about how lucky I am to 
+                have you by my side. You make me smile and laugh and feel good about myself as Ive been really trying to figure out who I am, as Ive changed from being reserved to who I am now. You are supportive 
+                and kind, you are the best person anyone could ever wish for. This past year has been the happiest and best one ever and I cant help but to wish and hope that this keeps on going till the end of time. 
+                <em>I love you so much!</em> You are my one and only, the one who completes me, and I only see many more years of happiness ahead of me at your side. Your smile makes my heart race, when you look into my 
+                eyes my mind goes blank. When you turn around to talk to me I cant help but to smile. When we hug, when we hug I wish that the moment would last forever. You are my happiness, Betsy. You are my everything.
+                You're everything I want in the world. Just seeing back to how we have progressed throughout this year has been amazing. I really love the moments we share together to talk, to eat, to just be around one another.</p>
+            <div class="songs">
+                <div class="song">
+                    <p>Il Divo puts it all in one song that I was listening to while making this:</p>
+                    <p>The Man You Love</p>
+                    <audio controls preload="auto"> 
+                        <source src="audio/the man you love.mp3"/>
+                    </audio>
+                    <p class="lyrics">    
+                        Si me ves, hallarás en mis ojos el amor </br>
+                        Eres tú la mitad que a mi vida completó</br>
+                        Lo que soy, te daré sin miedo a algun error</br>
+                        Creo en ti y dejaré en tus manos mi ilusión</br>
+                        Quiero estar dentro de tu corazón</br>
+                        Poder lograr que me ames como yo</br></br>
+                        I only wanna be the man</br>
+                        To give you everything I can</br>
+                        Every day and every night</br>
+                        Love you for all my life</br>
+                        I don't wanna change the world</br>
+                        As long as you're my girl</br>
+                        It's more than enough</br>
+                        Just to be the man you love</br></br>
+                        Quiero ser el lugar donde puedas refugiar</br>
+                        El temor y calmar en mis brazos tu ansiedad</br>
+                        Desde hoy voy a ser todo para ti</br>
+                        Hasta ayer te soñé y ahora estás aquí</br>
+                        Quiero oír tus secretos, lo que sueñes descubrir</br>
+                        Quiero amarte así</br></br>
+                        I only wanna be the man</br>
+                        To give you everything I can</br>
+                        Every day and every night</br>
+                        Love you for all my life</br>
+                        I don't wanna change the world</br>
+                        As long as you're my girl</br>
+                        It's more than enough</br>
+                        Just to be the man you love</br></br>
+                        I only wanna be the man</br>
+                        To give you everything I can</br>
+                        Every day and every night</br>
+                        Love you for all my life</br>
+                        I don't wanna change the world</br>
+                        As long as you're my girl</br>
+                        It's more than enough</br>
+                        Just to be the man you love</br></br>
+                        Just to be the man you love
+                    </p>
+                </div>
+                <div class="song">
+                    <p>And we can't forget about our song either:</p>
+                    <p>Can't Help Falling in Love (with you, Betsy)</p>
+                    <audio controls preload="auto"> 
+                        <source src="audio/Cant Help Falling In Love.mp3"/>
+                        <source src="audio/Cant Help Falling In Love.wav"/> <!-- fallback if no mp3 support in browser -->
+                    </audio>
+                    <p class="lyrics">
+                        Wise men say only fools rush in</br>
+                        But I can't help falling in love with you</br>
+                        Shall I stay?</br>
+                        Would it be a sin</br>
+                        If I can't help falling in love with you?</br></br>
+                        Like a river flows surely to the sea</br>
+                        Darling so it goes</br>
+                        Some things are meant to be</br>
+                        Take my hand, take my whole life too</br>
+                        For I can't help falling in love with you</br></br>
+                        Like a river flows surely to the sea</br>
+                        Darling so it goes</br>
+                        Some things are meant to be</br>
+                        Take my hand, take my whole life too</br>
+                        For I can't help falling in love with you</br>
+                        For I can't help falling in love with you</br>
+                    </p>
+                </div>
+            </div>
+            <div class="centered">
+                <p>I guess all I am trying to say is that I love you and I care about you a lot and hope that you are always and forever by my side.</p>
+            </div>
+            <h1 class="heart">❤️❤️❤️❤️❤️</h1>
+        </div>
     </div>
-
 </body>
 </html>
