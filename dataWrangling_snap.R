@@ -10,6 +10,8 @@ library('plotly')
 all_messages1 <- fromJSON("data/snap chat data/json/chat_history.json")
 all_messages2 <- fromJSON("data/snap chat data 2/json/chat_history.json")
 all_messages3 <- fromJSON("data/snap chat data 3/json/chat_history.json")
+all_messages4 <- fromJSON("data/snap chat data 4/json/chat_history.json")
+all_messages5 <- fromJSON("data/snap chat data 5/json/chat_history.json")
 
 
 #recieved data------------------------------------------------------------------
@@ -28,9 +30,21 @@ received_messages3 <- all_messages3$`Received Chat History`
 received_messages3 <- received_messages3 %>% filter(grepl("betsyymirandaa", tolower(received_messages3$From)))
 received_messages3 <- received_messages3 %>% arrange(Created)
 
+#received 4 (2/10/19 - 3/10/19)
+received_messages4 <- all_messages4$`Received Chat History`
+received_messages4 <- received_messages4 %>% filter(grepl("betsyymirandaa", tolower(received_messages4$From)))
+received_messages4 <- received_messages4 %>% arrange(Created)
+
+#received 5 (2/15/19 - 3/15/19)
+received_messages5 <- all_messages5$`Received Chat History`
+received_messages5 <- received_messages5 %>% filter(grepl("betsyymirandaa", tolower(received_messages5$From)))
+received_messages5 <- received_messages5 %>% arrange(Created)
+
 #merged all data tables
 received_messages_all <- bind_rows(received_messages, received_messages2)
 received_messages_all <- bind_rows(received_messages_all, received_messages3)
+received_messages_all <- bind_rows(received_messages_all, received_messages4)
+received_messages_all <- bind_rows(received_messages_all, received_messages5)
 received_messages_all <- received_messages_all %>% distinct(Created, .keep_all = TRUE)
 
 #adds a who sent it column: 0 = you 
@@ -62,10 +76,22 @@ sent_messages3 <- all_messages3$`Sent Chat History`
 sent_messages3 <- sent_messages3 %>% filter(grepl("betsyymirandaa", tolower(sent_messages3$To)))
 sent_messages3 <- sent_messages3 %>% arrange(Created)
 
+#sent 4 (2/10/19 - 3/10/19)
+sent_messages4 <- all_messages4$`Sent Chat History`
+sent_messages4 <- sent_messages4 %>% filter(grepl("betsyymirandaa", tolower(sent_messages4$To)))
+sent_messages4 <- sent_messages4 %>% arrange(Created)
+
+#sent 5 (2/15/19 - 3/15/19)
+sent_messages5 <- all_messages5$`Sent Chat History`
+sent_messages5 <- sent_messages5 %>% filter(grepl("betsyymirandaa", tolower(sent_messages5$To)))
+sent_messages5 <- sent_messages5 %>% arrange(Created)
+
 
 #merges all the sent data tables
 sent_messages_all <- bind_rows(sent_messages, sent_messages2)
 sent_messages_all <- bind_rows(sent_messages_all, sent_messages3)
+sent_messages_all <- bind_rows(sent_messages_all, sent_messages4)
+sent_messages_all <- bind_rows(sent_messages_all, sent_messages5)
 sent_messages_all <- sent_messages_all %>% distinct(Created, .keep_all = TRUE)
 
 #adds a who sent it column: 1 = me 
@@ -102,23 +128,41 @@ write.csv(all_messages, "data/all_snap_messages.csv")
 all_snaps <- fromJSON("data/snap chat data/json/snap_history.json")
 all_snaps2 <- fromJSON("data/snap chat data 2/json/snap_history.json")
 all_snaps3 <- fromJSON("data/snap chat data 3/json/snap_history.json")
+all_snaps4 <- fromJSON("data/snap chat data 4/json/snap_history.json")
+all_snaps5 <- fromJSON("data/snap chat data 5/json/snap_history.json")
 
 #received 1 (12/14/18 - 1/11/19)
 received_snaps <- all_snaps$`Received Snap History`
 received_snaps <- received_snaps %>% filter(grepl("betsyymirandaa", tolower(received_snaps$From)))
+received_snaps <- received_snaps %>% arrange(Created)
+
 
 #received 2 (12/28/18 - 1/24/19)
 received_snaps2 <- all_snaps2$`Received Snap History`
 received_snaps2 <- received_snaps2 %>% filter(grepl("betsyymirandaa", tolower(received_snaps2$From)))
+received_snaps2 <- received_snaps2 %>% arrange(Created)
 
 #received 3 (1/14/19 - 2/10/19)
 received_snaps3 <- all_snaps3$`Received Snap History`
 received_snaps3 <- received_snaps3 %>% filter(grepl("betsyymirandaa", tolower(received_snaps3$From)))
+received_snaps3 <- received_snaps3 %>% arrange(Created)
+
+#received 4 (1/14/19 - 2/10/19)
+received_snaps4 <- all_snaps4$`Received Snap History`
+received_snaps4 <- received_snaps4 %>% filter(grepl("betsyymirandaa", tolower(received_snaps4$From)))
+received_snaps4 <- received_snaps4 %>% arrange(Created)
+
+#received 3 (1/14/19 - 2/10/19)
+received_snaps5 <- all_snaps5$`Received Snap History`
+received_snaps5 <- received_snaps5 %>% filter(grepl("betsyymirandaa", tolower(received_snaps5$From)))
+received_snaps5 <- received_snaps5 %>% arrange(Created)
 
 
 #merged all data tables
 received_snaps_all <- bind_rows(received_snaps, received_snaps2)
 received_snaps_all <- bind_rows(received_snaps_all, received_snaps3)
+received_snaps_all <- bind_rows(received_snaps_all, received_snaps4)
+received_snaps_all <- bind_rows(received_snaps_all, received_snaps5)
 received_snaps_all <- received_snaps_all %>% distinct(Created, .keep_all = TRUE)
 
 #adds a who sent it column: 0 = you 
@@ -140,6 +184,7 @@ colnames(received_s_day) <- c('date', 'Number of Snaps')
 #sent 1 (12/14/18 - 1/11/19)
 sent_snaps <- all_snaps$`Sent Snap History`
 sent_snaps <- sent_snaps %>% filter(grepl("betsyymirandaa", tolower(sent_snaps$To)))
+sent_snaps <- sent_snaps %>% arrange(Created)
 
 #sent 2 (12/28/18 - 1/24/19)
 sent_snaps2 <- all_snaps2$`Sent Snap History`
@@ -151,10 +196,22 @@ sent_snaps3 <- all_snaps3$`Sent Snap History`
 sent_snaps3 <- sent_snaps3 %>% filter(grepl("betsyymirandaa", tolower(sent_snaps3$To)))
 sent_snaps3 <- sent_snaps3 %>% arrange(Created)
 
+#sent 4 (1/14/19 - 2/10/19)
+sent_snaps4 <- all_snaps4$`Sent Snap History`
+sent_snaps4 <- sent_snaps4 %>% filter(grepl("betsyymirandaa", tolower(sent_snaps4$To)))
+sent_snaps4 <- sent_snaps4 %>% arrange(Created)
+
+#sent 5 (1/14/19 - 2/10/19)
+sent_snaps5 <- all_snaps5$`Sent Snap History`
+sent_snaps5 <- sent_snaps5 %>% filter(grepl("betsyymirandaa", tolower(sent_snaps5$To)))
+sent_snaps5 <- sent_snaps5 %>% arrange(Created)
+
 
 #merges all the sent data tables
 sent_snaps_all <- bind_rows(sent_snaps, sent_snaps2)
 sent_snaps_all <- bind_rows(sent_snaps_all, sent_snaps3)
+sent_snaps_all <- bind_rows(sent_snaps_all, sent_snaps4)
+sent_snaps_all <- bind_rows(sent_snaps_all, sent_snaps4)
 sent_snaps_all <- sent_snaps_all %>% distinct(Created, .keep_all = TRUE)
 
 #adds a who sent it column: 1 = me 
